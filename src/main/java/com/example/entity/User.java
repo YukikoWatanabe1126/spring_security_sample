@@ -59,4 +59,17 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    @Column(name = "ROLE")
+    private String role;
+
+    /* 省略 */
+
+    public String getRole() {
+        return this.role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }	
 }
