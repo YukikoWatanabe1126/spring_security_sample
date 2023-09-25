@@ -11,33 +11,33 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
- @Override
- public void configure(WebSecurity web) throws Exception {
-  web.ignoring().antMatchers("/css/**", "/js/**");
- }
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/css/**", "/js/**");
+	}
 
- @Override
- protected void configure(HttpSecurity http) throws Exception{
-                http.authorizeRequests()
-                    .antMatchers("/loginForm").permitAll()
-                    .anyRequest().authenticated();
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+				.antMatchers("/loginForm").permitAll()
+				.anyRequest().authenticated();
 
-  http.formLogin()
-   .loginProcessingUrl("/login")
-   .loginPage("/loginForm")
-   .passwordParameter("password")
-   .usernameParameter("email")
-   .defaultSuccessUrl("/library", true)
-   .failureUrl("/loginForm?error");
+		http.formLogin()
+				.loginProcessingUrl("/login")
+				.loginPage("/loginForm")
+				.passwordParameter("password")
+				.usernameParameter("email")
+				.defaultSuccessUrl("/library", true)
+				.failureUrl("/loginForm?error");
 
-  http.logout()
-   .logoutUrl("/logout")
-   .logoutSuccessUrl("/loginForm");
- }
+		http.logout()
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/loginForm");
+	}
 
- @Bean
- public PasswordEncoder passwordEncoder() {
-  return new BCryptPasswordEncoder();
- }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }
