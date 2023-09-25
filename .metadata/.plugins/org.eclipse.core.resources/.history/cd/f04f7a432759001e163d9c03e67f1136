@@ -1,0 +1,6 @@
+// UserDetailsの完全修飾名
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class LoginUser implements UserDetails {
+    // フィールド、メソッド
+}
